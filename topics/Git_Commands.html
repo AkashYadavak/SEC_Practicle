@@ -1,1 +1,193 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="A beginner-friendly reference for common Git commands and workflows."
+		/>
+		<title>Git Commands | Software and Development Tools</title>
+		<style>
+			:root {
+				color-scheme: light;
+				font-family: "Segoe UI", sans-serif;
+				color: #202c33;
+				background: #f3f6f4;
+			}
 
+			body {
+				margin: 0;
+			}
+
+			header {
+				padding: 3rem max(1.5rem, calc((100% - 58rem) / 2));
+				color: #f7fbf8;
+				background: #174b43;
+			}
+
+			header p {
+				max-width: 42rem;
+				line-height: 1.65;
+			}
+
+			main {
+				max-width: 58rem;
+				margin: 0 auto;
+				padding: 2rem 1.5rem 4rem;
+			}
+
+			nav {
+				margin-bottom: 2rem;
+			}
+
+			a {
+				color: #176b59;
+			}
+
+			a:focus-visible {
+				outline: 3px solid #d27543;
+				outline-offset: 3px;
+			}
+
+			section {
+				padding: 1rem 0;
+				border-bottom: 1px solid #cbd6d1;
+			}
+
+			code,
+			pre {
+				font-family: ui-monospace, "Cascadia Code", monospace;
+			}
+
+			pre {
+				overflow-x: auto;
+				padding: 1rem;
+				color: #f7fbf8;
+				background: #202c33;
+			}
+
+			.note {
+				padding: 1rem;
+				border-left: 4px solid #d27543;
+				background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<p>SOFTWARE AND DEVELOPMENT TOOLS</p>
+			<h1>Git Commands</h1>
+			<p>
+				A quick reference to saving changes, working with branches, and sharing
+				a project with a remote repository.
+			</p>
+		</header>
+		<main>
+			<nav aria-label="Breadcrumb">
+				<a href="index.html">Course topics</a>
+			</nav>
+			<p class="note">
+				<strong>Quick model:</strong> edit files, stage the changes you want,
+				commit them locally, then push commits to share them.
+			</p>
+
+			<section aria-labelledby="setup-heading">
+				<h2 id="setup-heading">1. Set up Git</h2>
+				<p>
+					Set your name and email once on your computer. Git records these
+					details on your commits.
+				</p>
+				<pre><code>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global --list</code></pre>
+			</section>
+
+			<section aria-labelledby="start-heading">
+				<h2 id="start-heading">2. Start or get a project</h2>
+				<pre><code># Create a Git repository in the current folder
+git init
+
+# Copy an existing remote repository to your computer
+git clone https://github.com/username/repository.git
+
+# See which files Git notices and what is changed
+git status</code></pre>
+			</section>
+
+			<section aria-labelledby="save-heading">
+				<h2 id="save-heading">3. Save a change</h2>
+				<pre><code># Review changes before staging
+git diff
+
+# Stage one file, or stage all current changes
+git add path/to/file
+git add .
+
+# Review what is staged, then create a commit
+git diff --staged
+git commit -m "Describe the change"</code></pre>
+				<p>
+					A commit is a saved checkpoint in your local repository. A clear
+					message says what the change accomplishes.
+				</p>
+			</section>
+
+			<section aria-labelledby="branch-heading">
+				<h2 id="branch-heading">4. Work with branches</h2>
+				<pre><code># List local branches
+git branch
+
+# Create and switch to a new branch
+git switch -c feature/my-change
+
+# Switch back to the main branch
+git switch main
+
+# Combine a branch into the branch you are currently on
+git merge feature/my-change</code></pre>
+			</section>
+
+			<section aria-labelledby="share-heading">
+				<h2 id="share-heading">5. Share with GitHub</h2>
+				<pre><code># Show configured remotes
+git remote -v
+
+# Add a remote if the repository does not have one yet
+git remote add origin https://github.com/username/repository.git
+
+# Publish the current branch and remember its upstream
+git push -u origin main
+
+# Get remote changes; stop if a merge is needed
+git pull --ff-only origin main</code></pre>
+				<p>
+					Replace the example URL, branch, and file path with the ones for your
+					project. A commit is local until you push it.
+				</p>
+			</section>
+
+			<section aria-labelledby="inspect-heading">
+				<h2 id="inspect-heading">Useful inspection commands</h2>
+				<pre><code># Show recent commits
+git log --oneline
+
+# Show the current branch and working-tree status
+git status --short --branch
+
+# Compare your current branch with main
+git diff main</code></pre>
+			</section>
+
+			<section aria-labelledby="care-heading">
+				<h2 id="care-heading">Before running cleanup commands</h2>
+				<p>
+					Commands such as <code>git reset --hard</code> and
+					<code>git clean -fd</code> can permanently discard uncommitted work or
+					untracked files. Check <code>git status</code> first, and use them
+					only when you understand what will be removed.
+				</p>
+			</section>
+		</main>
+	</body>
+</html>
